@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unlock Premium - Luna</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .logo { font-size: 64px; margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        h1 { font-size: 36px; background: linear-gradient(90deg, #f8b500, #fceabb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; }
+        .subtitle { font-size: 16px; color: #a0a0a0; line-height: 1.6; }
+        .pricing-stack { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 40px; }
+        @media (max-width: 900px) { .pricing-stack { grid-template-columns: 1fr; gap: 20px; } .container { padding: 20px 15px; } .logo { font-size: 50px; } h1 { font-size: 28px; } .subtitle { font-size: 14px; } .pricing-card { padding: 25px; } .price { font-size: 40px; } .price.original { font-size: 18px; } .btn { font-size: 16px; padding: 16px; } }
+        @media (max-width: 480px) { .logo { font-size: 42px; } h1 { font-size: 24px; } .pricing-card { padding: 20px; } .badge { font-size: 10px; padding: 5px 12px; right: 10px; } .plan-name { font-size: 20px; } .plan-desc { font-size: 12px; } .price { font-size: 36px; } .features li { font-size: 13px; } }
+        .pricing-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 30px; border-radius: 20px; border: 2px solid rgba(255, 255, 255, 0.1); position: relative; transition: all 0.3s; }
+        .pricing-card:hover { transform: translateY(-5px); border-color: rgba(248, 181, 0, 0.3); box-shadow: 0 10px 40px rgba(248, 181, 0, 0.1); }
+        .pricing-card.featured { border-color: #f8b500; background: rgba(248, 181, 0, 0.05); box-shadow: 0 10px 40px rgba(248, 181, 0, 0.15); }
+        .pricing-card.popular { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.05); box-shadow: 0 10px 40px rgba(78, 205, 196, 0.15); }
+        .badge { position: absolute; top: -12px; right: 20px; padding: 6px 16px; border-radius: 20px; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+        .badge.best-value { background: linear-gradient(90deg, #f8b500, #fceabb); color: #0f0c29; }
+        .badge.most-popular { background: linear-gradient(90deg, #4ECDC4, #44A08D); color: white; }
+        .badge.limited { background: linear-gradient(90deg, #e94560, #ff6b6b); color: white; }
+        .plan-header { margin-bottom: 20px; }
+        .plan-name { font-size: 22px; margin-bottom: 8px; color: #f8b500; }
+        .plan-desc { font-size: 13px; color: #a0a0a0; }
+        .price-section { margin: 20px 0; }
+        .price { font-size: 48px; font-weight: bold; background: linear-gradient(90deg, #f8b500, #fceabb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .price.original { font-size: 20px; color: #666; text-decoration: line-through; margin-left: 10px; }
+        .price-period { font-size: 16px; color: #a0a0a0; }
+        .savings { display: inline-block; background: rgba(78, 205, 196, 0.2); color: #4ECDC4; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: bold; margin-top: 8px; }
+        .features { list-style: none; margin: 25px 0; text-align: left; }
+        .features li { padding: 10px 0; color: #e0e0e0; font-size: 14px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .features li:last-child { border-bottom: none; }
+        .features li::before { content: "✓ "; color: #4ECDC4; font-weight: bold; margin-right: 10px; }
+        .features li.unavailable { color: #666; text-decoration: line-through; }
+        .features li.unavailable::before { content: "✗ "; color: #666; }
+        .auto-renewal { background: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 12px; margin: 15px 0; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .auto-renewal-label { display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
+        .auto-renewal-text { flex: 1; }
+        .auto-renewal-title { font-size: 14px; font-weight: bold; color: #f8b500; margin-bottom: 4px; }
+        .auto-renewal-desc { font-size: 12px; color: #a0a0a0; }
+        .toggle-switch { position: relative; width: 50px; height: 28px; background: rgba(255, 255, 255, 0.2); border-radius: 14px; cursor: pointer; transition: background 0.3s; flex-shrink: 0; margin-left: 15px; }
+        .toggle-switch.active { background: linear-gradient(90deg, #4ECDC4, #44A08D); }
+        .toggle-switch::after { content: ''; position: absolute; top: 4px; left: 4px; width: 20px; height: 20px; background: white; border-radius: 50%; transition: transform 0.3s; }
+        .toggle-switch.active::after { transform: translateX(22px); }
+        .btn { width: 100%; padding: 18px; border: none; border-radius: 15px; font-size: 18px; font-weight: bold; cursor: pointer; transition: all 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        .btn-primary { background: linear-gradient(90deg, #f8b500, #fceabb); color: #0f0c29; box-shadow: 0 10px 30px rgba(248, 181, 0, 0.3); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(248, 181, 0, 0.4); }
+        .btn-secondary { background: rgba(255, 255, 255, 0.1); color: white; }
+        .btn-popular { background: linear-gradient(90deg, #4ECDC4, #44A08D); color: white; box-shadow: 0 10px 30px rgba(78, 205, 196, 0.3); }
+        .btn-popular:hover { box-shadow: 0 15px 40px rgba(78, 205, 196, 0.4); }
+        .guarantee { text-align: center; padding: 25px; background: rgba(78, 205, 196, 0.1); border-radius: 15px; border: 1px solid rgba(78, 205, 196, 0.3); margin-top: 30px; }
+        .guarantee-icon { font-size: 40px; margin-bottom: 12px; }
+        .guarantee h3 { color: #4ECDC4; font-size: 16px; margin-bottom: 8px; }
+        .guarantee p { font-size: 13px; color: #a0a0a0; line-height: 1.6; }
+        .footer-links { text-align: center; margin-top: 30px; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+        .footer-links a { color: #a0a0a0; text-decoration: none; font-size: 13px; margin: 0 15px; }
+        .footer-links a:hover { color: #f8b500; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #a0a0a0; text-decoration: none; font-size: 14px; }
+        .back-link:hover { color: #f8b500; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🌙</div>
+            <h1>Choose Your Plan</h1>
+            <p class="subtitle">Unlock unlimited love readings and cosmic guidance<br>Select the plan that fits your journey</p>
+        </div>
+        <div class="pricing-stack">
+            <div class="pricing-card">
+                <div class="badge limited">Starter</div>
+                <div class="plan-header"><div class="plan-name">💫 Pay-Per-Use</div><div class="plan-desc">Perfect for occasional readings</div></div>
+                <div class="price-section"><div class="price">$1.90</div><div class="price-period">for 5 readings</div><div style="font-size: 12px; color: #a0a0a0; margin-top: 8px;">$0.38 per reading</div></div>
+                <ul class="features"><li>5 individual love readings</li><li>No expiration - use anytime</li><li>Save reading history</li><li>Email support</li><li class="unavailable">Daily horoscopes</li><li class="unavailable">Compatibility analysis</li></ul>
+                <button class="btn btn-secondary" onclick="startPurchase('pay-per-use', 1.9)">Get 5 Readings</button>
+            </div>
+            <div class="pricing-card popular">
+                <div class="badge most-popular">Most Popular</div>
+                <div class="plan-header"><div class="plan-name">💕 Monthly</div><div class="plan-desc">For ongoing cosmic guidance</div></div>
+                <div class="price-section"><div class="price">$9.99</div><div class="price original">$19.99</div><div class="price-period">per month</div><div class="savings">💰 Save 50% ($10/month)</div></div>
+                <div class="auto-renewal"><label class="auto-renewal-label"><div class="auto-renewal-text"><div class="auto-renewal-title">🔄 Auto-Renewal</div><div class="auto-renewal-desc">Cancel anytime</div></div><div class="toggle-switch active" onclick="toggleRenewal(this)" id="monthlyRenewal"></div></label></div>
+                <ul class="features"><li>✓ Unlimited daily readings</li><li>✓ Unlimited compatibility analysis</li><li>✓ Weekly love forecasts</li><li>✓ Personalized push notifications</li><li>✓ Priority email support</li><li>✓ Cancel anytime</li></ul>
+                <button class="btn btn-popular" onclick="startPurchase('monthly', 9.99)">Start 14-Day Free Trial</button>
+            </div>
+            <div class="pricing-card featured">
+                <div class="badge best-value">Best Value - Save 63%</div>
+                <div class="plan-header"><div class="plan-name">💖 Annual</div><div class="plan-desc">Commit to your cosmic journey</div></div>
+                <div class="price-section"><div class="price">$89.99</div><div class="price-period">per year</div><div class="price original">$239.88</div><div class="savings">💰 Save $149.89/year (63% OFF)</div></div>
+                <div class="auto-renewal"><label class="auto-renewal-label"><div class="auto-renewal-text"><div class="auto-renewal-title">🔄 Auto-Renewal (Optional)</div><div class="auto-renewal-desc">Renew annually or cancel anytime</div></div><div class="toggle-switch active" onclick="toggleRenewal(this)" id="annualRenewal"></div></label></div>
+                <ul class="features"><li>✓ Everything in Monthly</li><li>✓ 2 months FREE</li><li>✓ Exclusive annual perks</li><li>✓ Early access to new features</li><li>✓ VIP customer support</li><li>✓ Best value for serious users</li></ul>
+                <button class="btn btn-primary" onclick="startPurchase('annual', 89.99)">Get Annual Plan - $89.99</button>
+            </div>
+        </div>
+        <div class="guarantee"><div class="guarantee-icon">💝</div><h3>14-Day Money-Back Guarantee</h3><p>Not satisfied? Get a full refund within 14 days, no questions asked.<br>We're confident you'll love your cosmic journey with Luna.</p></div>
+        <div class="footer-links"><a href="terms.html">Terms of Service</a><a href="privacy.html">Privacy Policy</a><a href="refund.html">Refund Policy</a><a href="contact.html">Contact Us</a></div>
+        <a href="reading-enhanced.html" class="back-link">← Back to Reading</a>
+    </div>
+    <script>
+        const renewalState = { monthly: true, annual: true };
+        function toggleRenewal(element) { element.classList.toggle('active'); const isMonthly = element.id === 'monthlyRenewal'; renewalState[isMonthly ? 'monthly' : 'annual'] = element.classList.contains('active'); }
+        function startPurchase(planType, price) { const isRenewal = planType === 'monthly' ? renewalState.monthly : renewalState.annual; let message = '🚀 Payment Integration Coming Soon!\n\n'; if (planType === 'pay-per-use') { message += 'Plan: Pay-Per-Use - $1.90 for 5 readings\n• No expiration\n• Use anytime\n\nThank you for your interest! 💕'; } else if (planType === 'monthly') { message += 'Plan: Monthly - $9.99/month\n• Auto-renewal: ' + (isRenewal ? '✅ Enabled' : '❌ Disabled') + '\n• Original price: $19.99/month\n• Save 50% ($10/month)\n• 14-day free trial\n• Cancel anytime\n\nThank you for your interest! 💕'; } else if (planType === 'annual') { message += 'Plan: Annual - $89.99/year\n• Auto-renewal: ' + (isRenewal ? '✅ Enabled' : '❌ Disabled') + '\n• Original price: $239.88/year\n• Save 63% ($149.89/year)\n• Best value for serious users\n\nThank you for your interest! 💕'; } alert(message); }
+    </script>
+</body>
+</html>
