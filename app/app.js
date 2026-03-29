@@ -14,7 +14,7 @@ function initFreeCount() {
     let freeCount = localStorage.getItem('luna_free_count');
     
     if (freeCount === null) {
-        freeCount = 2;
+        freeCount = 1;
         localStorage.setItem('luna_free_count', freeCount);
         localStorage.setItem('luna_first_visit', new Date().toISOString());
     }

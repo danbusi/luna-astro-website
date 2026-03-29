@@ -44,7 +44,7 @@ function initFreeCount() {
     
     if (parseInt(freeCount) <= 0) {
         setTimeout(() => {
-            window.location.href = 'paywall.html';
+            window.location.href = 'paywall-enhanced.html';
         }, 2000);
     }
 }
