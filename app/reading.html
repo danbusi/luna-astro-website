@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Love Reading - Luna</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .logo {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        h1 {
+            font-size: 32px;
+            background: linear-gradient(90deg, #e94560, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #a0a0a0;
+            font-size: 16px;
+        }
+        
+        .form-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #a0a0a0;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-size: 16px;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #e94560;
+        }
+        
+        select option {
+            background: #1a1a2e;
+            color: #ffffff;
+        }
+        
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(90deg, #e94560, #ff6b6b);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(233, 69, 96, 0.4);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .free-count {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(233, 69, 96, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(233, 69, 96, 0.3);
+        }
+        
+        .free-count span {
+            color: #e94560;
+            font-weight: bold;
+            font-size: 24px;
+        }
+        
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #a0a0a0;
+        }
+        
+        .login-link a {
+            color: #e94560;
+            text-decoration: none;
+        }
+        
+        .error-message {
+            background: rgba(255, 82, 82, 0.1);
+            border: 1px solid rgba(255, 82, 82, 0.3);
+            color: #ff5252;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        @media (max-width: 600px) {
+            .row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🌙</div>
+            <h1>Your Love Reading</h1>
+            <p class="subtitle">Discover what the stars say about your love life</p>
+        </div>
+        
+        <div class="form-card">
+            <div class="error-message" id="errorMessage"></div>
+            
+            <form id="readingForm">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email (optional, save your readings)</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="birthdate">Birth Date</label>
+                    <div class="row">
+                        <input type="number" id="birthYear" name="birthYear" placeholder="Year" min="1950" max="2008" required>
+                        <select id="birthMonth" name="birthMonth" required>
+                            <option value="">Month</option>
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                        <input type="number" id="birthDay" name="birthDay" placeholder="Day" min="1" max="31" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="partnerName">Partner's Name (optional)</label>
+                    <input type="text" id="partnerName" name="partnerName" placeholder="Their name (for compatibility reading)">
+                </div>
+                
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    ✨ Get Your Free Reading
+                </button>
+            </form>
+            
+            <div class="free-count">
+                <p>Free Readings Left: <span id="freeCount">2</span>/2</p>
+                <p style="font-size: 12px; color: #a0a0a0; margin-top: 5px;">
+                    Create an account to save your readings
+                </p>
+            </div>
+            
+            <div class="login-link">
+                Already have an account? <a href="login.html">Sign In</a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
