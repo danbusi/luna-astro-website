@@ -55,12 +55,18 @@
             line-height: 1.6;
         }
         
-        /* 价格卡片 - 单列布局 */
+        /* 价格卡片 - 横向布局 */
         .pricing-stack {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             margin-bottom: 40px;
+        }
+        
+        @media (max-width: 900px) {
+            .pricing-stack {
+                grid-template-columns: 1fr;
+            }
         }
         
         .pricing-card {
@@ -535,6 +541,8 @@
                 message = '🚀 Payment Integration Coming Soon!\n\n' +
                           'Plan: Monthly - $9.99/month\n' +
                           `• Auto-renewal: ${isRenewal ? '✅ Enabled' : '❌ Disabled'}\n` +
+                          '• Original price: $19.99/month\n' +
+                          '• Save 50% ($10/month)\n' +
                           '• 14-day free trial\n' +
                           '• Cancel anytime\n\n' +
                           'Thank you for your interest! 💕';
@@ -559,4 +567,6 @@ ou for your interest! 💕';
         }
     </script>
 </body>
+</html>
+dy>
 </html>
