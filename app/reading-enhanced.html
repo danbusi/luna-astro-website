@@ -301,18 +301,96 @@
             font-size: 28px;
         }
         
-        /* 响应式 */
-        @media (max-width: 600px) {
-            .row {
-                grid-template-columns: 1fr;
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 15px;
             }
             
-            .form-card {
-                padding: 30px 20px;
+            .logo {
+                font-size: 60px;
             }
             
             h1 {
-                font-size: 32px;
+                font-size: 28px;
+            }
+            
+            .subtitle {
+                font-size: 14px;
+            }
+            
+            .form-card {
+                padding: 25px 20px;
+            }
+            
+            .progress-step {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+            
+            .step-title {
+                font-size: 24px;
+            }
+            
+            .step-desc {
+                font-size: 14px;
+            }
+            
+            input, select {
+                font-size: 15px;
+                padding: 14px 16px;
+            }
+            
+            .btn {
+                font-size: 18px;
+                padding: 16px;
+            }
+        }
+        
+        /* 小屏幕手机优化 */
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 50px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .subtitle {
+                font-size: 13px;
+            }
+            
+            .form-card {
+                padding: 20px 15px;
+            }
+            
+            .step-title {
+                font-size: 20px;
+            }
+            
+            .row {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .row input {
+                font-size: 16px;
+                padding: 16px;
+            }
+            
+            .btn {
+                font-size: 16px;
+                padding: 14px;
+            }
+            
+            .free-count {
+                padding: 15px;
+            }
+            
+            .free-count span {
+                font-size: 24px;
             }
         }
     </style>

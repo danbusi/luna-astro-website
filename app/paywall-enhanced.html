@@ -59,13 +59,101 @@
         .pricing-stack {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 15px;
             margin-bottom: 40px;
         }
         
+        /* 移动端适配 */
         @media (max-width: 900px) {
             .pricing-stack {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .header {
+                margin-bottom: 30px;
+            }
+            
+            .logo {
+                font-size: 50px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            .subtitle {
+                font-size: 14px;
+            }
+            
+            .pricing-card {
+                padding: 25px;
+            }
+            
+            .price {
+                font-size: 40px;
+            }
+            
+            .price.original {
+                font-size: 18px;
+            }
+            
+            .btn {
+                font-size: 16px;
+                padding: 16px;
+            }
+            
+            .content {
+                padding: 25px 20px;
+            }
+        }
+        
+        /* 小屏幕手机优化 */
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 42px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .pricing-card {
+                padding: 20px;
+            }
+            
+            .badge {
+                font-size: 10px;
+                padding: 5px 12px;
+                right: 10px;
+            }
+            
+            .plan-name {
+                font-size: 20px;
+            }
+            
+            .plan-desc {
+                font-size: 12px;
+            }
+            
+            .price {
+                font-size: 36px;
+            }
+            
+            .features li {
+                font-size: 13px;
+            }
+            
+            .auto-renewal-title {
+                font-size: 13px;
+            }
+            
+            .auto-renewal-desc {
+                font-size: 11px;
             }
         }
         
@@ -504,6 +592,7 @@
             <a href="terms.html">Terms of Service</a>
             <a href="privacy.html">Privacy Policy</a>
             <a href="refund.html">Refund Policy</a>
+            <a href="contact.html">Contact Us</a>
         </div>
         
         <a href="reading-enhanced.html" class="back-link">← Back to Reading</a>
